@@ -27,3 +27,14 @@ pub fn one_after_one(button: &gtk::ToggleButton) -> Result<()> {
 
     Ok(())
 }
+
+pub fn set(button: &gtk::ToggleButton, num: u64) -> Result<()> {
+    let mut relais = ShiftRegister::new(ShiftRegisterType::RELAIS);
+
+    match button.get_active() {
+        true => relais.set(num)?,
+        false => relais.clear(num)?,
+    }
+
+    Ok(())
+}

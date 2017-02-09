@@ -229,7 +229,7 @@ impl ShiftRegister {
     /// assert_eq!(sim.get(1), true);
     /// ```
     pub fn all(&mut self) -> Result<()> {
-        self.data = 1;
+        self.data = u64::max_value();
         try!(self.shift_out());
 
         Ok(())
