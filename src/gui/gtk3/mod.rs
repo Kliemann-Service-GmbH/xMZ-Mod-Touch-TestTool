@@ -13,8 +13,10 @@ use self::glib::translate::ToGlibPtr;
 use std::thread;
 use std::time::Duration;
 
-mod index;
+mod leds_index;
+mod relais_index;
 mod static_resource;    // Zur Einbindung der .gresource Datei
+mod tests_index;
 
 
 // Basic Setup des Fensters
@@ -28,7 +30,7 @@ fn window_main_setup(window: &gtk::Window) -> Result<()> {
 
     let display = window.get_display().unwrap();
     let screen = display.get_screen(0);
-    screen.set_resolution(130.0);
+    screen.set_resolution(150.0);
 
     #[cfg(not(feature = "development"))]
     window.fullscreen();
@@ -55,6 +57,7 @@ pub fn launch() {
     let builder = gtk::Builder::new_from_resource("/com/gaswarnanlagen/xmz-mod-touch-test-tool/GUI/main.ui");
 
     let window_main: gtk::Window = builder.get_object("window_main").unwrap();
+    let button_test_relais_all: gtk::Button = builder.get_object("button_test_relais_all").unwrap();
 
     let info_bar: gtk::InfoBar = builder.get_object("info_bar").unwrap();
 
@@ -66,11 +69,12 @@ pub fn launch() {
             info_bar.connect_response(move |info_bar, _| info_bar.hide());
     }
 
+    button_test_relais_all.connect_clicked(clone!(builder => move |_| {
+        relais_index::launch();
+    }));
 
     window_main.show_all();
     info_bar.hide();
-
-    index::run();
 
 
     // // 1Sek Thread

@@ -24,3 +24,8 @@ gtk = { git = "https://github.com/gtk-rs/gtk.git", features = ["v3_16"] }
 gtk-sys = { git = "https://github.com/gtk-rs/sys.git" }
 libc = "*"
 libmodbus-rs = { git = "https://github.com/zzeroo/libmodbus-rs.git" }
+serde = "^0"
+serde_derive = "^0"
+serde_json = "^0"
+sysfs_gpio = "^0"
+rand = "^0"

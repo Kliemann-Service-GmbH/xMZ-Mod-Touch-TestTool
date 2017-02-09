@@ -31,8 +31,6 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
     <property name="can_focus">False</property>
     <property name="resizable">False</property>
     <property name="window_position">center-always</property>
-    <property name="default_width">1024</property>
-    <property name="default_height">600</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -98,10 +96,14 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
           <object class="GtkNotebook" id="notebook_main">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
             <child>
               <object class="GtkBox" id="box_test">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkBox" id="box_test_relais">
@@ -223,6 +225,8 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
               <object class="GtkBox" id="box_relais">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="homogeneous">True</property>
                 <child>
@@ -240,6 +244,8 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                   <object class="GtkBox" id="box_relais_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <property name="homogeneous">True</property>
                     <property name="baseline_position">bottom</property>
                     <child>
@@ -395,6 +401,8 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                   <object class="GtkGrid" id="box_leds_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <property name="row_homogeneous">True</property>
                     <property name="column_homogeneous">True</property>
                     <child>
