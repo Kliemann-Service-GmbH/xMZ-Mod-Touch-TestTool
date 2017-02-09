@@ -2,6 +2,5 @@
 <gresources>
   <gresource prefix="/com/gaswarnanlagen/xmz-mod-touch-test-tool/GUI">
     <file preprocess="xml-stripblanks">main.ui</file>
-    <!-- <file>CO_NO2 Kombisensoren mit Modbus Interface-600x338.png</file> -->
   </gresource>
 </gresources>

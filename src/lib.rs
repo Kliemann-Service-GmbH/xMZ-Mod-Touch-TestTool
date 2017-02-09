@@ -7,7 +7,7 @@ extern crate gtk;
 extern crate libmodbus_rs;
 
 #[macro_use] mod macros;
-mod gui {
+pub mod gui {
     pub mod gtk3;
 }
 pub mod errors;

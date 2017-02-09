@@ -2,15 +2,19 @@ extern crate xmz_mod_touch_test_tool;
 
 use xmz_mod_touch_test_tool::errors::*;
 
-
 fn run() -> Result<()> {
-    println!("Hello, zzeroo!");
+    xmz_mod_touch_test_tool::gui::gtk3::launch();
 
     Ok(())
 }
 
 
 fn main() {
+    println!("{} Version: {}\n",
+        env!("CARGO_PKG_NAME"),
+        env!("CARGO_PKG_VERSION"));
+
+
     if let Err(ref e) = run() {
         use ::std::io::Write;
         let stderr = &mut ::std::io::stderr();
