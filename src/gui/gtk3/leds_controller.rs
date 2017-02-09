@@ -24,3 +24,14 @@ pub fn one_after_one(button: &gtk::ToggleButton) {
 
     println!("One after One LEDs {}!", button.get_active());
 }
+
+pub fn set(button: &gtk::ToggleButton, num: u64) -> Result<()> {
+    let mut leds = ShiftRegister::new(ShiftRegisterType::LED);
+
+    match button.get_active() {
+        true => leds.set(num)?,
+        false => leds.clear(num)?,
+    }
+
+    Ok(())
+}

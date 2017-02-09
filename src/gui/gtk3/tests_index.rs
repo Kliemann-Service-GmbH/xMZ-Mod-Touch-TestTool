@@ -21,7 +21,7 @@ fn window_main_setup(window: &gtk::Window) -> Result<()> {
         env!("CARGO_PKG_DESCRIPTION"),
         env!("CARGO_PKG_VERSION"));
     window.set_title(&window_title);
-    window.set_default_size(1024, 600);
+    // window.set_default_size(1024, 600);
     // window.set_border_width(10);
 
     let display = window.get_display().unwrap();
@@ -29,8 +29,8 @@ fn window_main_setup(window: &gtk::Window) -> Result<()> {
     screen.set_resolution(150.0);
 
     #[cfg(not(feature = "development"))]
-    // window.fullscreen();
-    window.maximize();
+    window.fullscreen();
+    // window.maximize();
 
     Ok(())
 }
@@ -60,6 +60,9 @@ pub fn launch() {
     let button_test_leds_random: gtk::ToggleButton = builder.get_object("button_test_leds_random").unwrap();
     let button_test_relais_one_after_one: gtk::ToggleButton = builder.get_object("button_test_relais_one_after_one").unwrap();
     let button_test_leds_one_after_one: gtk::ToggleButton = builder.get_object("button_test_leds_one_after_one").unwrap();
+
+    let label_tab_relais: gtk::Label = builder.get_object("label_tab_relais").unwrap();
+    let label_tab_leds: gtk::Label = builder.get_object("label_tab_leds").unwrap();
 
     let info_bar: gtk::InfoBar = builder.get_object("info_bar").unwrap();
 
@@ -93,6 +96,15 @@ pub fn launch() {
 
     button_test_leds_one_after_one.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::leds_controller::one_after_one(button);
+    }));
+
+
+    label_tab_relais.connect_activate_current_link(clone!(builder => move |button| {
+        ::gui::gtk3::relais_index::launch(&builder, button);
+    }));
+
+    label_tab_leds.connect_activate_current_link(clone!(builder => move |button| {
+        ::gui::gtk3::leds_index::launch(&builder, button);
     }));
 
     window_main.show_all();
