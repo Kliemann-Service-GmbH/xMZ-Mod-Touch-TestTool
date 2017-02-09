@@ -28,9 +28,9 @@ fn window_main_setup(window: &gtk::Window) -> Result<()> {
     let screen = display.get_screen(0);
     screen.set_resolution(150.0);
 
-    #[cfg(not(feature = "development"))]
-    window.fullscreen();
-    // window.maximize();
+    // #[cfg(not(feature = "development"))]
+    // window.fullscreen();
+    // // window.maximize();
 
     Ok(())
 }
