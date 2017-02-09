@@ -13,6 +13,11 @@ build = "build.rs"
 # Development Environment, switch off fullscreen and some parts not present on dev maschines
 development = []
 
+[[bin]]
+name = "xmz-mod-touch-test-tool"
+path = "src/main.rs"
+doc = false
+
 [dependencies]
 error-chain = "^0"
 gdk = { git = "https://github.com/gtk-rs/gdk.git" }

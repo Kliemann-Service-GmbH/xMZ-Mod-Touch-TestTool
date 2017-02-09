@@ -33,7 +33,8 @@ fn window_main_setup(window: &gtk::Window) -> Result<()> {
     screen.set_resolution(150.0);
 
     #[cfg(not(feature = "development"))]
-    window.fullscreen();
+    // window.fullscreen();
+    window.maximize();
 
     Ok(())
 }
@@ -90,7 +91,7 @@ pub fn launch() {
         Inhibit(false)
     });
 
-    // #[cfg(feature = "development")]
+    #[cfg(feature = "development")]
     window_main.connect_key_press_event(move |_, key| {
         if let key::Escape = key.get_keyval() {
             gtk::main_quit()
