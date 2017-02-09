@@ -191,7 +191,7 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_test_led_one_after_one">
+                      <object class="GtkToggleButton" id="button_test_leds_one_after_one">
                         <property name="label" translatable="yes">Testlauf LED der Reihe nach</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
