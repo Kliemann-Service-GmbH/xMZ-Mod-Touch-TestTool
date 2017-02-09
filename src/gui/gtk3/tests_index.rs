@@ -210,28 +210,28 @@ pub fn launch() {
         ::gui::gtk3::leds_controller::set(button, &leds, 12);
     }));
     button_led13.connect_clicked(clone!(leds => move |button| {
-        ::gui::gtk3::leds_controller::set(button, &leds, 12);
-    }));
-    button_led14.connect_clicked(clone!(leds => move |button| {
         ::gui::gtk3::leds_controller::set(button, &leds, 13);
     }));
-    button_led15.connect_clicked(clone!(leds => move |button| {
+    button_led14.connect_clicked(clone!(leds => move |button| {
         ::gui::gtk3::leds_controller::set(button, &leds, 14);
     }));
-    button_led16.connect_clicked(clone!(leds => move |button| {
+    button_led15.connect_clicked(clone!(leds => move |button| {
         ::gui::gtk3::leds_controller::set(button, &leds, 15);
     }));
-    button_led17.connect_clicked(clone!(leds => move |button| {
+    button_led16.connect_clicked(clone!(leds => move |button| {
         ::gui::gtk3::leds_controller::set(button, &leds, 16);
     }));
-    button_led18.connect_clicked(clone!(leds => move |button| {
+    button_led17.connect_clicked(clone!(leds => move |button| {
         ::gui::gtk3::leds_controller::set(button, &leds, 17);
     }));
-    button_led19.connect_clicked(clone!(leds => move |button| {
+    button_led18.connect_clicked(clone!(leds => move |button| {
         ::gui::gtk3::leds_controller::set(button, &leds, 18);
     }));
-    button_led20.connect_clicked(clone!(leds => move |button| {
+    button_led19.connect_clicked(clone!(leds => move |button| {
         ::gui::gtk3::leds_controller::set(button, &leds, 19);
+    }));
+    button_led20.connect_clicked(clone!(leds => move |button| {
+        ::gui::gtk3::leds_controller::set(button, &leds, 20);
     }));
 
 

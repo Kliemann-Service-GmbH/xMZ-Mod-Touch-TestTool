@@ -467,8 +467,20 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led5">
-                        <property name="label" translatable="yes">Led 5</property>
+                      <object class="GtkToggleButton" id="button_led7">
+                        <property name="label" translatable="yes">Led 7</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton" id="button_led8">
+                        <property name="label" translatable="yes">Led 8</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -487,24 +499,12 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
-                        <property name="top_attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkToggleButton" id="button_led7">
-                        <property name="label" translatable="yes">Led 7</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
                         <property name="top_attach">5</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led8">
-                        <property name="label" translatable="yes">Led 8</property>
+                      <object class="GtkToggleButton" id="button_led5">
+                        <property name="label" translatable="yes">Led 5</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -515,8 +515,20 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led9">
-                        <property name="label" translatable="yes">Led 9</property>
+                      <object class="GtkToggleButton" id="button_led11">
+                        <property name="label" translatable="yes">Led 11</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton" id="button_led12">
+                        <property name="label" translatable="yes">Led 12</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -535,24 +547,12 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
-                        <property name="top_attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkToggleButton" id="button_led11">
-                        <property name="label" translatable="yes">Led 11</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">2</property>
                         <property name="top_attach">5</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led12">
-                        <property name="label" translatable="yes">Led 12</property>
+                      <object class="GtkToggleButton" id="button_led9">
+                        <property name="label" translatable="yes">Led 9</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -563,8 +563,20 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led13">
-                        <property name="label" translatable="yes">Led 13</property>
+                      <object class="GtkToggleButton" id="button_led15">
+                        <property name="label" translatable="yes">Led 15</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton" id="button_led16">
+                        <property name="label" translatable="yes">Led 16</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -583,24 +595,12 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </object>
                       <packing>
                         <property name="left_attach">4</property>
-                        <property name="top_attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkToggleButton" id="button_led15">
-                        <property name="label" translatable="yes">Led 15</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">4</property>
                         <property name="top_attach">5</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led16">
-                        <property name="label" translatable="yes">Led 16</property>
+                      <object class="GtkToggleButton" id="button_led13">
+                        <property name="label" translatable="yes">Led 13</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -611,8 +611,20 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led17">
-                        <property name="label" translatable="yes">Led 17</property>
+                      <object class="GtkToggleButton" id="button_led19">
+                        <property name="label" translatable="yes">Led 19</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton" id="button_led20">
+                        <property name="label" translatable="yes">Led 20</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -631,24 +643,12 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                       </object>
                       <packing>
                         <property name="left_attach">6</property>
-                        <property name="top_attach">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkToggleButton" id="button_led19">
-                        <property name="label" translatable="yes">Led 19</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">6</property>
                         <property name="top_attach">5</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="button_led20">
-                        <property name="label" translatable="yes">Led 20</property>
+                      <object class="GtkToggleButton" id="button_led17">
+                        <property name="label" translatable="yes">Led 17</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
