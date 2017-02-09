@@ -130,37 +130,93 @@ pub fn launch() {
     button_relais1.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 1);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais2.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 2);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais3.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 3);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais4.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 4);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais5.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 5);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais6.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 6);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais7.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 7);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais8.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 8);
     }));
-    button_relais1.connect_clicked(clone!(builder => move |button| {
+    button_relais9.connect_clicked(clone!(builder => move |button| {
         ::gui::gtk3::relais_controller::set(button, 9);
     }));
 
 
-    for i in 1..21 {
-        button_led1.connect_clicked(clone!(builder => move |button| {
-            ::gui::gtk3::leds_controller::set(button, i);
-        }));
-    }
+    button_led1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 1);
+    }));
+    button_led2.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 2);
+    }));
+    button_led3.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 3);
+    }));
+    button_led4.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 4);
+    }));
+    button_led5.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 5);
+    }));
+    button_led6.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 6);
+    }));
+    button_led7.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 7);
+    }));
+    button_led8.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 8);
+    }));
+    button_led9.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 9);
+    }));
+    button_led10.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 10);
+    }));
+    button_led11.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 11);
+    }));
+    button_led12.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 12);
+    }));
+    button_led13.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 12);
+    }));
+    button_led14.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 13);
+    }));
+    button_led15.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 14);
+    }));
+    button_led16.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 15);
+    }));
+    button_led17.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 16);
+    }));
+    button_led18.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 17);
+    }));
+    button_led19.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 18);
+    }));
+    button_led20.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::leds_controller::set(button, 19);
+    }));
+
 
     window_main.show_all();
     info_bar.hide();
