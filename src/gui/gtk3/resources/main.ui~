@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0
+<!-- Generated with glade 3.20.0 
 
 xMZ-Mod-Touch-TestTool - Test Tool für die "xMZ-Mod-Touch" Hardware
 Copyright (C)
@@ -226,12 +226,22 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                 <property name="orientation">vertical</property>
                 <property name="homogeneous">True</property>
                 <child>
-                  <placeholder/>
+                  <object class="GtkEntry">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="box_relais_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="homogeneous">True</property>
+                    <property name="baseline_position">bottom</property>
                     <child>
                       <object class="GtkToggleButton" id="button_relais1">
                         <property name="label" translatable="yes">Relais 1</property>
@@ -377,12 +387,16 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
               <object class="GtkBox" id="box_leds">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
                 <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkGrid" id="box_leds_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="row_homogeneous">True</property>
+                    <property name="column_homogeneous">True</property>
                     <child>
                       <object class="GtkToggleButton" id="button_led1">
                         <property name="label" translatable="yes">Led 1</property>
@@ -757,7 +771,7 @@ Author: Stefan Müller <s.mueller@it.kls-glt.de>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
+                    <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
