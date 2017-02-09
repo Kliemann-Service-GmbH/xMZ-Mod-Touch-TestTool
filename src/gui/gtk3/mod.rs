@@ -4,19 +4,21 @@ extern crate gobject_sys;
 extern crate gtk_sys;
 extern crate libc;
 
+use errors::*;
 use gdk::enums::key;
 use gtk;
 use gtk::prelude::*;
 use self::glib_sys::gpointer;
 use self::glib::translate::ToGlibPtr;
-use errors::*;
+use std::thread;
+use std::time::Duration;
 
 mod index;
 mod static_resource;    // Zur Einbindung der .gresource Datei
 
 
 // Basic Setup des Fensters
-fn window_setup(window: &gtk::Window) -> Result<()> {
+fn window_main_setup(window: &gtk::Window) -> Result<()> {
     let window_title = format!("{} {}",
         env!("CARGO_PKG_DESCRIPTION"),
         env!("CARGO_PKG_VERSION"));
@@ -54,11 +56,29 @@ pub fn launch() {
 
     let window_main: gtk::Window = builder.get_object("window_main").unwrap();
 
-    window_setup(&window_main);
+    let info_bar: gtk::InfoBar = builder.get_object("info_bar").unwrap();
+
+    // Rufe Funktion für die Basis Fenster Konfiguration auf
+    window_main_setup(&window_main);
+
+    { // Hide info_bar
+            let info_bar = info_bar.clone();
+            info_bar.connect_response(move |info_bar, _| info_bar.hide());
+    }
+
 
     window_main.show_all();
+    info_bar.hide();
 
     index::run();
+
+
+    // // 1Sek Thread
+    // gtk::idle_add(move || {
+    //     thread::sleep(Duration::from_millis(1000));
+    //
+    //     glib::Continue(true)
+    // });
 
     // Beende Programm wenn das Fenster geschlossen wurde
     window_main.connect_delete_event(|_, _| {
