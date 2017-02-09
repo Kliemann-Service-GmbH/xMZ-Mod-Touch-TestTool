@@ -216,6 +216,24 @@ impl ShiftRegister {
         Ok(())
     }
 
+    /// Alle Shift Register werden high gezogen
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use xmz_server::*;
+    ///
+    /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
+    /// assert_eq!(sim.get(1), false);
+    /// sim.all();
+    /// assert_eq!(sim.get(1), true);
+    /// ```
+    pub fn all(&mut self) -> Result<()> {
+        self.data = 1;
+        try!(self.shift_out());
+
+        Ok(())
+    }
 
     /// Lampentest testet alle Outputs
     ///
