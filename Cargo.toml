@@ -1,0 +1,16 @@
+[package]
+name = "xmz-mod-touch-test-tool"
+version = "0.1.0"
+authors = ["Stefan Müller <s.mueller@it.kls-glt.de>"]
+
+[dependencies]
+error-chain = "^0"
+gdk = { git = "https://github.com/gtk-rs/gdk.git" }
+gio = { git = "https://github.com/gtk-rs/gio.git" }
+glib = { git = "https://github.com/gtk-rs/glib.git" }
+glib-sys = { git = "https://github.com/gtk-rs/sys.git" }
+gobject-sys = { git = "https://github.com/gtk-rs/sys" }
+gtk = { git = "https://github.com/gtk-rs/gtk.git", features = ["v3_16"] }
+gtk-sys = { git = "https://github.com/gtk-rs/sys.git" }
+libc = "*"
+libmodbus-rs = { git = "https://github.com/zzeroo/libmodbus-rs.git" }
