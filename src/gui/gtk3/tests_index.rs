@@ -24,12 +24,12 @@ fn window_main_setup(window: &gtk::Window) -> Result<()> {
     // window.set_default_size(1024, 600);
     // window.set_border_width(10);
 
-    let display = window.get_display().unwrap();
-    let screen = display.get_screen(0);
-    screen.set_resolution(150.0);
+    // let display = window.get_display().unwrap();
+    // let screen = display.get_screen(0);
+    // screen.set_resolution(150.0);
 
-    // #[cfg(not(feature = "development"))]
-    // window.fullscreen();
+    #[cfg(not(feature = "development"))]
+    window.fullscreen();
     // // window.maximize();
 
     Ok(())
