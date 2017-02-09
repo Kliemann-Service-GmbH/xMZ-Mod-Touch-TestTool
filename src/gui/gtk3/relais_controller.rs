@@ -33,7 +33,6 @@ pub fn one_after_one(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegiste
 
                 ::std::thread::sleep(::std::time::Duration::from_millis(100));
             }
-            relais.reset()?;
         },
         false => relais.reset()?,
     }

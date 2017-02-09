@@ -235,7 +235,7 @@ impl ShiftRegister {
         Ok(())
     }
 
-    /// Lampentest testet alle Outputs
+    /// Lampentest testet alle Outputs, Reset nach 1Sek
     ///
     /// Diese Funktion schaltet alle Ausgänge high, wartet eine Sekunde und schaltet danach alle
     /// Ausgänge wieder aus.
@@ -247,11 +247,7 @@ impl ShiftRegister {
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     ///
-    /// sim.set(1);
-    /// sim.clear(10);
     /// sim.test();
-    /// assert_eq!(sim.get(1), true);
-    /// assert_eq!(sim.get(10), false);
     /// ```
     pub fn test(&mut self) -> Result<()> {
         // Alten Stand speichern
@@ -268,7 +264,7 @@ impl ShiftRegister {
         Ok(())
     }
 
-    /// Random Lampentest testet einige, wirklich vorhanden, Outputs, zufällig
+    /// Lampentest testet alle Outputs, Reset nach 1Sek
     ///
     /// Diese Funktion schaltet alle Ausgänge high, wartet eine Sekunde und schaltet danach alle
     /// Ausgänge wieder aus.
@@ -280,9 +276,61 @@ impl ShiftRegister {
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     ///
+    /// sim.test_timed();
+    /// ```
+    pub fn test_timed(&mut self) -> Result<()> {
+        // Alten Stand speichern
+        let old_state = self.data;
+        // Buffer komplett mit Einsen füllen
+        self.data = u64::max_value();
+        try!(self.shift_out());
+        thread::sleep(Duration::new(1, 0));
+        try!(self.reset());
+        // alten Stand wieder herstellen
+        self.data = old_state;
+        try!(self.shift_out());
+
+        Ok(())
+    }
+
+    /// Random Lampentest testet einige, Outputs, zufällig
+    ///
+    /// Diese Funktion setzt das ShiftRegister in einen zufälligen Zustand
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use xmz_server::*;
+    ///
+    /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
+    ///
     /// sim.test_random();
     /// ```
     pub fn test_random(&mut self) -> Result<()> {
+        // Buffer mit Zufallsdaten füllen
+        self.data =  ::rand::thread_rng().gen_range(1, u64::max_value());
+
+        try!(self.shift_out());
+
+        Ok(())
+    }
+
+    /// Random Lampentest testet einige, Outputs, zufällig, Reset nach 1Sek
+    ///
+    /// Diese Funktion speichert den Zustand des Shift Registers, schaltet einige,
+    /// zufällige Ausgänge high, wartet eine Sekunde und schaltet danach alle
+    /// Ausgänge wieder auf den vorherigen Zustand.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use xmz_server::*;
+    ///
+    /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
+    ///
+    /// sim.test_random_timed();
+    /// ```
+    pub fn test_random_timed(&mut self) -> Result<()> {
         // Alten Stand speichern
         let old_state = self.data;
         // Buffer mit Zufallsdaten füllen

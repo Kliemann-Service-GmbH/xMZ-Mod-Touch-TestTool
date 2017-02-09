@@ -35,7 +35,6 @@ pub fn one_after_one(button: &gtk::ToggleButton, leds: &Arc<Mutex<ShiftRegister>
 
                 ::std::thread::sleep(::std::time::Duration::from_millis(100));
             }
-            leds.reset()?;
         },
         false => leds.reset()?,
     }
