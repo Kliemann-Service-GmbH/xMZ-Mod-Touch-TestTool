@@ -61,8 +61,36 @@ pub fn launch() {
     let button_test_relais_one_after_one: gtk::ToggleButton = builder.get_object("button_test_relais_one_after_one").unwrap();
     let button_test_leds_one_after_one: gtk::ToggleButton = builder.get_object("button_test_leds_one_after_one").unwrap();
 
-    let label_tab_relais: gtk::Label = builder.get_object("label_tab_relais").unwrap();
-    let label_tab_leds: gtk::Label = builder.get_object("label_tab_leds").unwrap();
+    let button_relais1: gtk::ToggleButton = builder.get_object("button_relais1").unwrap();
+    let button_relais2: gtk::ToggleButton = builder.get_object("button_relais2").unwrap();
+    let button_relais3: gtk::ToggleButton = builder.get_object("button_relais3").unwrap();
+    let button_relais4: gtk::ToggleButton = builder.get_object("button_relais4").unwrap();
+    let button_relais5: gtk::ToggleButton = builder.get_object("button_relais5").unwrap();
+    let button_relais6: gtk::ToggleButton = builder.get_object("button_relais6").unwrap();
+    let button_relais7: gtk::ToggleButton = builder.get_object("button_relais7").unwrap();
+    let button_relais8: gtk::ToggleButton = builder.get_object("button_relais8").unwrap();
+    let button_relais9: gtk::ToggleButton = builder.get_object("button_relais9").unwrap();
+
+    let button_led1: gtk::ToggleButton = builder.get_object("button_led1").unwrap();
+    let button_led2: gtk::ToggleButton = builder.get_object("button_led2").unwrap();
+    let button_led3: gtk::ToggleButton = builder.get_object("button_led3").unwrap();
+    let button_led4: gtk::ToggleButton = builder.get_object("button_led4").unwrap();
+    let button_led5: gtk::ToggleButton = builder.get_object("button_led5").unwrap();
+    let button_led6: gtk::ToggleButton = builder.get_object("button_led6").unwrap();
+    let button_led7: gtk::ToggleButton = builder.get_object("button_led7").unwrap();
+    let button_led8: gtk::ToggleButton = builder.get_object("button_led8").unwrap();
+    let button_led9: gtk::ToggleButton = builder.get_object("button_led9").unwrap();
+    let button_led10: gtk::ToggleButton = builder.get_object("button_led10").unwrap();
+    let button_led11: gtk::ToggleButton = builder.get_object("button_led11").unwrap();
+    let button_led12: gtk::ToggleButton = builder.get_object("button_led12").unwrap();
+    let button_led13: gtk::ToggleButton = builder.get_object("button_led13").unwrap();
+    let button_led14: gtk::ToggleButton = builder.get_object("button_led14").unwrap();
+    let button_led15: gtk::ToggleButton = builder.get_object("button_led15").unwrap();
+    let button_led16: gtk::ToggleButton = builder.get_object("button_led16").unwrap();
+    let button_led17: gtk::ToggleButton = builder.get_object("button_led17").unwrap();
+    let button_led18: gtk::ToggleButton = builder.get_object("button_led18").unwrap();
+    let button_led19: gtk::ToggleButton = builder.get_object("button_led19").unwrap();
+    let button_led20: gtk::ToggleButton = builder.get_object("button_led20").unwrap();
 
     let info_bar: gtk::InfoBar = builder.get_object("info_bar").unwrap();
 
@@ -99,13 +127,40 @@ pub fn launch() {
     }));
 
 
-    label_tab_relais.connect_activate_current_link(clone!(builder => move |button| {
-        ::gui::gtk3::relais_index::launch(&builder, button);
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 1);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 2);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 3);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 4);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 5);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 6);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 7);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 8);
+    }));
+    button_relais1.connect_clicked(clone!(builder => move |button| {
+        ::gui::gtk3::relais_controller::set(button, 9);
     }));
 
-    label_tab_leds.connect_activate_current_link(clone!(builder => move |button| {
-        ::gui::gtk3::leds_index::launch(&builder, button);
-    }));
+
+    for i in 1..21 {
+        button_led1.connect_clicked(clone!(builder => move |button| {
+            ::gui::gtk3::leds_controller::set(button, i);
+        }));
+    }
 
     window_main.show_all();
     info_bar.hide();
