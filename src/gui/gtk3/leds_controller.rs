@@ -15,14 +15,33 @@ pub fn all(button: &gtk::ToggleButton) -> Result<()> {
     Ok(())
 }
 
-pub fn random(button: &gtk::ToggleButton) {
+pub fn random(button: &gtk::ToggleButton) -> Result<()> {
+    let mut leds = ShiftRegister::new(ShiftRegisterType::LED);
 
-    println!("Random LEDs {}!", button.get_active());
+    match button.get_active() {
+        true => leds.test_random()?,
+        false => leds.reset()?,
+    }
+
+    Ok(())
 }
 
-pub fn one_after_one(button: &gtk::ToggleButton) {
+pub fn one_after_one(button: &gtk::ToggleButton) -> Result<()> {
+    let mut leds = ShiftRegister::new(ShiftRegisterType::LED);
 
-    println!("One after One LEDs {}!", button.get_active());
+    match button.get_active() {
+        true => {
+            for i in 1..21 {
+                leds.set(i);
+
+                ::std::thread::sleep(::std::time::Duration::from_millis(100));
+            }
+            leds.reset()?;
+        },
+        false => leds.reset()?,
+    }
+
+    Ok(())
 }
 
 pub fn set(button: &gtk::ToggleButton, num: u64) -> Result<()> {

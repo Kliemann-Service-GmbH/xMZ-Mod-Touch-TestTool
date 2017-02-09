@@ -15,15 +15,29 @@ pub fn all(button: &gtk::ToggleButton) -> Result<()> {
 }
 
 pub fn random(button: &gtk::ToggleButton) -> Result<()> {
+    let mut relais = ShiftRegister::new(ShiftRegisterType::RELAIS);
 
-    println!("Random Relais {}!", button.get_active());
+    match button.get_active() {
+        true => relais.test_random()?,
+        false => relais.reset()?,
+    }
 
-    Ok(())
-}
+    Ok(())}
 
 pub fn one_after_one(button: &gtk::ToggleButton) -> Result<()> {
+    let mut relais = ShiftRegister::new(ShiftRegisterType::RELAIS);
 
-    println!("One after one Relais {}!", button.get_active());
+    match button.get_active() {
+        true => {
+            for i in 1..10 {
+                relais.set(i);
+
+                ::std::thread::sleep(::std::time::Duration::from_millis(100));
+            }
+            relais.reset()?;
+        },
+        false => relais.reset()?,
+    }
 
     Ok(())
 }
