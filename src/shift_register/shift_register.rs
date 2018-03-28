@@ -1,4 +1,9 @@
-use errors::*;
+//! Steuert die Relais und LED'sensor
+//!
+//! Die Relais und LED sind über 8bit serielle Shift Register angeschlossen. Dieser Teil der
+//! Software dient zur Verwaltung und Kontrolle dieser.
+
+use errors::TestToolError as Error;
 use rand::Rng;
 use std::thread;
 use std::time::Duration;
@@ -46,8 +51,9 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     /// assert_eq!(sim.data, 0b0);
@@ -91,8 +97,9 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     /// assert_eq!(sim.data, 0b0);
@@ -100,7 +107,7 @@ impl ShiftRegister {
     /// assert_eq!(sim.data, 0b100);
     /// ```
     /// More info: http://stackoverflow.com/questions/47981/how-do-you-set-clear-and-toggle-a-single-bit-in-c-c
-    pub fn set(&mut self, num: u64) -> Result<()> {
+    pub fn set(&mut self, num: u64) -> Result<(), Error> {
         self.data |= 1 << num -1;
         try!(self.shift_out());
 
@@ -117,8 +124,9 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     /// sim.set(1);
@@ -145,8 +153,9 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     /// assert_eq!(sim.data, 0b0);
@@ -160,7 +169,7 @@ impl ShiftRegister {
     /// assert_eq!(sim.get(1), true);
     /// assert_eq!(sim.get(3), false);
     /// ```
-    pub fn clear(&mut self, num: u64) -> Result<()> {
+    pub fn clear(&mut self, num: u64) -> Result<(), Error> {
         self.data &= !(1 << num - 1);
         try!(self.shift_out());
 
@@ -177,8 +186,9 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     /// assert_eq!(sim.data, 0b0);
@@ -188,7 +198,7 @@ impl ShiftRegister {
     /// sim.toggle(3);
     /// assert_eq!(sim.get(3), false);
     /// ```
-    pub fn toggle(&mut self, num: u64) -> Result<()> {
+    pub fn toggle(&mut self, num: u64) -> Result<(), Error> {
         self.data ^= 1 << num -1;
         try!(self.shift_out());
 
@@ -199,8 +209,9 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     /// assert_eq!(sim.get(1), false);
@@ -209,7 +220,7 @@ impl ShiftRegister {
     /// sim.reset();
     /// assert_eq!(sim.get(1), false);
     /// ```
-    pub fn reset(&mut self) -> Result<()> {
+    pub fn reset(&mut self) -> Result<(), Error> {
         self.data = 0;
         try!(self.shift_out());
 
@@ -220,15 +231,16 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     /// assert_eq!(sim.get(1), false);
     /// sim.all();
     /// assert_eq!(sim.get(1), true);
     /// ```
-    pub fn all(&mut self) -> Result<()> {
+    pub fn all(&mut self) -> Result<(), Error> {
         self.data = u64::max_value();
         try!(self.shift_out());
 
@@ -242,14 +254,15 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     ///
     /// sim.test();
     /// ```
-    pub fn test(&mut self) -> Result<()> {
+    pub fn test(&mut self) -> Result<(), Error> {
         // Alten Stand speichern
         let old_state = self.data;
         // Buffer komplett mit Einsen füllen
@@ -271,14 +284,15 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     ///
     /// sim.test_timed();
     /// ```
-    pub fn test_timed(&mut self) -> Result<()> {
+    pub fn test_timed(&mut self) -> Result<(), Error> {
         // Alten Stand speichern
         let old_state = self.data;
         // Buffer komplett mit Einsen füllen
@@ -299,14 +313,15 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     ///
     /// sim.test_random();
     /// ```
-    pub fn test_random(&mut self) -> Result<()> {
+    pub fn test_random(&mut self) -> Result<(), Error> {
         // Buffer mit Zufallsdaten füllen
         self.data =  ::rand::thread_rng().gen_range(1, u64::max_value());
 
@@ -323,14 +338,15 @@ impl ShiftRegister {
     ///
     /// # Examples
     ///
-    /// ```
-    /// use xmz_server::*;
+    /// ```rust
+    /// extern crate xmz_test_tool;
+    /// use xmz_test_tool::{ShiftRegister, ShiftRegisterType};
     ///
     /// let mut sim = ShiftRegister::new(ShiftRegisterType::Simulation);
     ///
     /// sim.test_random_timed();
     /// ```
-    pub fn test_random_timed(&mut self) -> Result<()> {
+    pub fn test_random_timed(&mut self) -> Result<(), Error> {
         // Alten Stand speichern
         let old_state = self.data;
         // Buffer mit Zufallsdaten füllen
@@ -348,7 +364,7 @@ impl ShiftRegister {
 
     /// Exportiert die Pins in das sysfs des Linux Kernels
     ///
-    fn export_pins(&self) -> Result<()> {
+    fn export_pins(&self) -> Result<(), Error> {
         if let Some(oe_pin) = self.oe_pin { try!(Pin::new(oe_pin).export()) };
         if let Some(ds_pin) = self.ds_pin { try!(Pin::new(ds_pin).export()) };
         if let Some(clock_pin) = self.clock_pin { try!(Pin::new(clock_pin).export()) };
@@ -359,7 +375,7 @@ impl ShiftRegister {
 
     /// Schaltet die Pins in den OUTPUT Pin Modus
     ///
-    fn set_pin_direction_output(&self) -> Result<()> {
+    fn set_pin_direction_output(&self) -> Result<(), Error> {
         if let Some(oe_pin) = self.oe_pin { try!(Pin::new(oe_pin).set_direction(Direction::Out)) };
         if let Some(oe_pin) = self.oe_pin { try!(Pin::new(oe_pin).set_value(0)) }; // !OE pin low == Shift register enabled.
         if let Some(ds_pin) = self.ds_pin { try!(Pin::new(ds_pin).set_direction(Direction::Out)) };
@@ -374,7 +390,7 @@ impl ShiftRegister {
 
 
     /// Toogelt den Clock Pin high->low
-    fn clock_in(&self) -> Result<()> {
+    fn clock_in(&self) -> Result<(), Error> {
         if let Some(clock_pin) = self.clock_pin { try!(Pin::new(clock_pin).set_value(1)) };
         if let Some(clock_pin) = self.clock_pin { try!(Pin::new(clock_pin).set_value(0)) };
 
@@ -382,7 +398,7 @@ impl ShiftRegister {
     }
 
     /// Toggelt den Latch Pin pin high->low,
-    fn latch_out(&self) -> Result<()> {
+    fn latch_out(&self) -> Result<(), Error> {
         if let Some(latch_pin) = self.latch_pin { try!(Pin::new(latch_pin).set_value(1)) };
         if let Some(latch_pin) = self.latch_pin { try!(Pin::new(latch_pin).set_value(0)) };
 
@@ -391,7 +407,7 @@ impl ShiftRegister {
 
     /// Schiebt die kompletten Daten in die Schiebe Register und schaltet die Ausgänge dieser
     /// Schiebe Register (latch out)
-    fn shift_out(&self) -> Result<()> {
+    fn shift_out(&self) -> Result<(), Error> {
         // Wenn export_pins erfolgreich ist werden die Daten eingeclocked, ansonsten passiert nix
         try!(self.export_pins());
         try!(self.set_pin_direction_output());

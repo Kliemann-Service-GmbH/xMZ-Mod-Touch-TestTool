@@ -1,11 +1,11 @@
-use errors::*;
+use errors::TestToolError as Error;
 use gtk;
 use gtk::prelude::*;
 use shift_register::*;
 use std::sync::{Arc, Mutex};
 
 
-pub fn all(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) -> Result<()> {
+pub fn all(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) -> Result<(), Error> {
     let mut relais = relais.lock().unwrap();
     match button.get_active() {
         true => relais.all()?,
@@ -15,7 +15,7 @@ pub fn all(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) -> Re
     Ok(())
 }
 
-pub fn random(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) -> Result<()> {
+pub fn random(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) -> Result<(), Error> {
     let mut relais = relais.lock().unwrap();
     match button.get_active() {
         true => relais.test_random()?,
@@ -24,7 +24,7 @@ pub fn random(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) ->
 
     Ok(())}
 
-pub fn one_after_one(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) -> Result<()> {
+pub fn one_after_one(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>) -> Result<(), Error> {
     let mut relais = relais.lock().unwrap();
     match button.get_active() {
         true => {
@@ -40,7 +40,7 @@ pub fn one_after_one(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegiste
     Ok(())
 }
 
-pub fn set(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>, num: u64) -> Result<()> {
+pub fn set(button: &gtk::ToggleButton, relais: &Arc<Mutex<ShiftRegister>>, num: u64) -> Result<(), Error> {
     let mut relais = relais.lock().unwrap();
     match button.get_active() {
         true => relais.set(num)?,

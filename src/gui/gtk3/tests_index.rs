@@ -4,10 +4,11 @@ extern crate gobject_sys;
 extern crate gtk_sys;
 extern crate libc;
 
-use errors::*;
+use errors::TestToolError as Error;
 use gdk::enums::key;
 use gtk;
 use gtk::prelude::*;
+use gtk::WidgetExt;
 use self::glib_sys::gpointer;
 use self::glib::translate::ToGlibPtr;
 use std::sync::{Arc, Mutex};
@@ -17,28 +18,11 @@ use ::shift_register::*;
 
 
 // Basic Setup des Fensters
-fn window_main_setup(window: &gtk::Window) -> Result<()> {
+fn window_main_setup(window: &gtk::Window) -> Result<(), Error> {
     let window_title = format!("{} {}",
         env!("CARGO_PKG_DESCRIPTION"),
         env!("CARGO_PKG_VERSION"));
     window.set_title(&window_title);
-    // window.set_default_size(1024, 600);
-    // window.set_border_width(10);
-
-    // let display = window.get_display().unwrap();
-    // let screen = display.get_screen(0);
-    // screen.set_resolution(150.0);
-
-    // CSS wird hier gleich im Fenster Setup dem kompletten Screen zugeordnet.
-    //
-    let display = window.get_display().unwrap();
-    let screen = display.get_screen(0);
-    let css_style_provider = gtk::CssProvider::new();
-    // Das CSS File sollte aus dem Dateisystem mit `include_str!` eingebunden werden.
-    // let css_file = include_str!("css_file.css");
-    let css_file = "GtkToggleButton .toggle { background-color: red; }"; // In diesem Testfile wird Anstelle des CSS Files ein String verwendet
-    css_style_provider.load_from_data(css_file).unwrap();
-    gtk::StyleContext::add_provider_for_screen(&screen, &css_style_provider, gtk::STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     #[cfg(not(feature = "development"))]
     window.fullscreen();

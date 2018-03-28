@@ -1,6 +1,6 @@
 [package]
-name = "xmz-mod-touch-test-tool"
-version = "1.0.1"
+name = "xmz-test-tool"
+version = "1.0.2"
 authors = ["Stefan Müller <s.mueller@it.kls-glt.de>"]
 description = "Kalibrator Software für die CO/NO2 Kombisensoren mit Modbus Interface"
 documentation = "https://gaswarnanlagen.com/xmz-mod-touch"
@@ -14,12 +14,11 @@ build = "build.rs"
 development = []
 
 [[bin]]
-name = "xmz-mod-touch-test-tool"
-path = "src/main.rs"
+name = "xmz-test-tool"
+path = "src/bin/main.rs"
 doc = false
 
 [dependencies]
-error-chain = "^0"
 gdk = { git = "https://github.com/gtk-rs/gdk.git" }
 gio = { git = "https://github.com/gtk-rs/gio.git" }
 glib = { git = "https://github.com/gtk-rs/glib.git" }
@@ -28,7 +27,6 @@ gobject-sys = { git = "https://github.com/gtk-rs/sys" }
 gtk = { git = "https://github.com/gtk-rs/gtk.git", features = ["v3_16"] }
 gtk-sys = { git = "https://github.com/gtk-rs/sys.git" }
 libc = "*"
-libmodbus-rs = { git = "https://github.com/zzeroo/libmodbus-rs.git" }
 serde = "^0"
 serde_derive = "^0"
 serde_json = "^0"
